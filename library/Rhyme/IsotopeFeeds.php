@@ -14,6 +14,7 @@ namespace Rhyme;
 
 use Isotope\Model\Config as IsoConfig;
 use Isotope\Interfaces\IsotopeProduct;
+use Isotope\Model\ProductPrice;
 use Isotope\Model\Product;
 use Isotope\Isotope;
 use Rhyme\Feed\Rss20;
