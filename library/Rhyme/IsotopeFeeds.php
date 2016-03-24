@@ -328,7 +328,12 @@ class IsotopeFeeds extends \Controller
 			//Sku, price, etc
 			$objItem->id = $objProduct->id;
 			$objItem->sku = strlen($objProduct->sku) ? $objProduct->sku : $objProduct->alias;
-			$objItem->price = Isotope::formatPrice($objProduct->original_price) .' '. $objConfig->currency;
+
+            $objPrices = ProductPrice::findBy('pid', $objProduct->id);
+            if (null !== $objPrices) {
+                $objTiers = \Database::getInstance()->query("SELECT * FROM tl_iso_product_pricetier WHERE pid IN (" . implode(',', $objPrices->fetchEach('id')) . ")");
+            }
+            $objItem->price = $objTiers->fetchAllAssoc()[0]['price'] .' '. $objConfig->currency;
 
 			//Google basic settings
 			$objItem->condition = $objProduct->gid_condition;
