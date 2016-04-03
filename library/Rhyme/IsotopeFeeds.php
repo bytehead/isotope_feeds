@@ -382,11 +382,6 @@ class IsotopeFeeds extends \Controller
 				unset($arrImages[0]);
 				if(count($arrImages)>0)
 				{
-    				foreach($arrImages as $k=>$image)
-    				{
-        				//Add the base URL
-        				$arrImages[$k] = $image;
-    				}
 					//Additional images
 					$objItem->additional_image_link = $arrImages;
 				}
