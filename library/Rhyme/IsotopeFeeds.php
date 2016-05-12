@@ -334,17 +334,6 @@ class IsotopeFeeds extends \Controller
 
 			// Prepare the description
 			$strDescription = $objProduct->description;
-
-			//HOOK for additional description that needs to be added
-			if (isset($GLOBALS['ISO_HOOKS']['modifyDescription']) && is_array($GLOBALS['ISO_HOOKS']['modifyDescription']))
-			{
-				foreach ($GLOBALS['ISO_HOOKS']['modifyDescription'] as $callback)
-				{
-					$this->import($callback[0]);
-					$strDescription = $this->$callback[0]->$callback[1]($strDescription);
-				}
-			}
-
 			$strDescription = $this->replaceInsertTags($strDescription);
 			$objItem->description = $this->convertRelativeUrls($strDescription, $strLink);
 
